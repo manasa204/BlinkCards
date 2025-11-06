@@ -9,6 +9,9 @@ export default function Study() {
   const [cards, setCards] = useState(store.getCards(deckId));
   const [i, setI] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [showInput, setShowInput] = useState(false);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     if (!deck) nav("/404");
@@ -21,7 +24,18 @@ export default function Study() {
 
   function next() {
     setShowAnswer(false);
+    setShowInput(false);
+    setUserAnswer("");
+    setFeedback("");
     setI((prev) => (prev + 1) % cards.length);
+  }
+
+  function checkAnswer() {
+    if (userAnswer.trim().toLowerCase() === card.answer.toLowerCase()) {
+      setFeedback("Correct!");
+    } else {
+      setFeedback(`Incorrect. The correct answer is: ${card.answer}`);
+    }
   }
 
   return (
@@ -46,9 +60,36 @@ export default function Study() {
         <button className="btn" onClick={() => setShowAnswer((s) => !s)}>
           {showAnswer ? "Show Question" : "Show Answer"}
         </button>
-        <button className="btn ok" onClick={next}>I knew this</button>
+        <button className="btn ok" onClick={() => setShowInput(!showInput)}>
+          {showInput ? "Hide Answer Input" : "I didn't know this"}
+        </button>
         <button className="btn primary" onClick={next}>Next</button>
       </div>
+
+      {showInput && (
+        <div className="grid" style={{ gap: 12 }}>
+          <div className="form-group">
+            <label htmlFor="answer-input" className="form-label">Your Answer</label>
+            <input
+              id="answer-input"
+              className="input"
+              placeholder="Type your answer here..."
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+            />
+          </div>
+          <div className="actions">
+            <button className="btn primary" onClick={checkAnswer} disabled={!userAnswer.trim()}>
+              Check Answer
+            </button>
+          </div>
+          {feedback && (
+            <div className={`feedback ${feedback.startsWith("Correct") ? "correct" : "incorrect"}`}>
+              {feedback}
+            </div>
+          )}
+        </div>
+      )}
 
       <div className="meta">Card {i + 1} of {cards.length}</div>
     </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { store } from "../store";
 import DeckCard from "../components/DeckCard";
 
-export default function Home() {
+export default function StudyHome() {
   const [decks, setDecks] = useState([]);
   const [filteredDecks, setFilteredDecks] = useState([]);
   const [search, setSearch] = useState("");
@@ -20,26 +20,11 @@ export default function Home() {
     setFilteredDecks(decks.filter(d => d.name.toLowerCase().includes(search.toLowerCase())));
   }, [decks, search]);
 
-  function deleteDeck(id) {
-    if (confirm("Delete this deck and its cards?")) {
-      store.deleteDeck(id);
-      refresh();
-    }
-  }
-
   return (
     <div className="grid" style={{ gap: 24 }}>
       <section className="hero">
-        <h1 className="hero-title">Welcome to BlinkCards</h1>
-        <p className="hero-subtitle">Create and study flashcards to boost your learning.</p>
-      </section>
-
-      <section className="panel">
-        <h1 className="h1">Get Started</h1>
-        <div className="actions">
-          <Link to="/create" className="btn primary">Create Deck</Link>
-          <Link to="/study" className="btn">Study</Link>
-        </div>
+        <h1 className="hero-title">Study Your Decks</h1>
+        <p className="hero-subtitle">Select a deck below to start studying your flashcards.</p>
       </section>
 
       <section>
@@ -58,7 +43,7 @@ export default function Home() {
           <div className="empty-state">
             <div className="empty-icon">📚</div>
             <h3>No decks yet</h3>
-            <p>Create your first deck above to start learning!</p>
+            <p><Link to="/create">Create your first deck</Link> to start learning!</p>
           </div>
         ) : filteredDecks.length === 0 ? (
           <div className="empty">No decks match your search.</div>
@@ -69,7 +54,7 @@ export default function Home() {
                 key={d.id}
                 deck={d}
                 cardCount={store.getCards(d.id).length}
-                onDelete={deleteDeck}
+                studyLink={`/decks/${d.id}/study`}
               />
             ))}
           </div>

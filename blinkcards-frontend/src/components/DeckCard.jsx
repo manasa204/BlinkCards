@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function DeckCard({ deck, cardCount, onDelete }) {
+export default function DeckCard({ deck, cardCount, onDelete, studyLink }) {
   return (
     <div className="card">
       <div className="meta">{new Date(deck.createdAt).toLocaleString()}</div>
@@ -10,7 +10,8 @@ export default function DeckCard({ deck, cardCount, onDelete }) {
         <div className="meta">{cardCount} cards</div>
         <div className="actions">
           <Link to={`/decks/${deck.id}`} className="btn">Open</Link>
-          <button className="btn danger" onClick={() => onDelete(deck.id)}>Delete</button>
+          {studyLink && <Link to={studyLink} className="btn primary">Study</Link>}
+          {onDelete && <button className="btn danger" onClick={() => onDelete(deck.id)}>Delete</button>}
         </div>
       </div>
     </div>
