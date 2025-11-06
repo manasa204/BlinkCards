@@ -61,7 +61,7 @@ export default function Study() {
           {showAnswer ? "Show Question" : "Show Answer"}
         </button>
         <button className="btn ok" onClick={() => setShowInput(!showInput)}>
-          {showInput ? "Hide Answer Input" : "I didn't know this"}
+          {showInput ? "Hide Answer Input" : "I knew this"}
         </button>
         <button className="btn primary" onClick={next}>Next</button>
       </div>
