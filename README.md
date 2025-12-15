@@ -50,14 +50,4 @@ Frontend runs at:
 
 http://localhost:3000/
 
-📁 Project Structure
-BlinkCards/
- ├── backend/
- │   ├── flashcards/
- │   ├── manage.py
- │   └── ...
- ├── frontend/
- │   ├── src/
- │   ├── public/
- │   └── ...
- └── README.md
+
