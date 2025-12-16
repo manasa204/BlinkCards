@@ -4,7 +4,6 @@ BlinkCards is a flashcard-based learning app designed to help students study eff
 Users can create flashcards, review them in study mode, and track learning progress with built-in statistics.
 
 ✨ Features
-
 ✍️ Create Flashcards — Add custom flashcards with question & answer.
 
 📚 Study Mode — Flip cards, practice, and mark what you learn.
