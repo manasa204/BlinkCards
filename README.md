@@ -3,7 +3,7 @@ BlinkCards – Smart Flashcard Learning App
 BlinkCards is a flashcard-based learning app designed to help students study efficiently.
 Users can create flashcards, review them in study mode, and track learning progress with built-in statistics.
 
-✨ Features
+✨ Best Features 
 ✍️ Create Flashcards — Add custom flashcards with question & answer.
 
 📚 Study Mode — Flip cards, practice, and mark what you learn.
